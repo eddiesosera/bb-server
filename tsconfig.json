@@ -1,24 +1,21 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "CommonJS", // Use CommonJS for Node.js compatibility
+    "module": "ESNext",
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "./api",
     "strict": true,
-    "moduleResolution": "node", // Node.js module resolution
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "baseUrl": "./src",
+    "baseUrl": "./api",
     "paths": {
       "*": ["*"]
     },
-
-    /* Linting */
     "noUnusedLocals": true,
-    // "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["api"],
   "exclude": ["node_modules", "dist"]
 }
