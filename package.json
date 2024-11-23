@@ -3,12 +3,14 @@
   "description": "Backend server for Bearded Blogger",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "ts-node-dev api/server.ts",
-     "build": "tsc",
-  "start": "node dist/api/server.js"
+    "dev": "ts-node api/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "eslint": "^9.15.0",
     "nodemon": "^3.1.7",
@@ -19,6 +21,7 @@
   },
   "dependencies": {
     "@vercel/node": "^3.2.26",
+    "cors": "^2.8.5",
     "express": "^4.21.1"
   }
 }
