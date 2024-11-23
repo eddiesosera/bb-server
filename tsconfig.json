@@ -4,17 +4,11 @@
     "module": "ESNext",
     "outDir": "./dist",
     "rootDir": "./api",
-    "strict": true,
+    // "strict": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
-    "baseUrl": "./api",
-    "paths": {
-      "*": ["*"]
-    },
-    "noUnusedLocals": true,
-    "noFallthroughCasesInSwitch": true
+    "skipLibCheck": true
   },
   "include": ["api"],
   "exclude": ["node_modules", "dist"]
