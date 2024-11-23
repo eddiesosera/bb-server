@@ -1,0 +1,23 @@
+{
+  "name": "bb-server",
+  "description": "Backend server for Bearded Blogger",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "ts-node-dev src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "eslint": "^9.15.0",
+    "nodemon": "^3.1.7",
+    "prettier": "^3.3.3",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "~5.6.2"
+  },
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
