@@ -3,14 +3,22 @@ import pick from "../utils/pick.js";
 import ApiError from "../utils/ApiError.js";
 import catchAsync from "../utils/catchAsync.js";
 import * as articleService from "../services/article.service.js";
+import { generateSlug } from "../utils/slugify.js";
 
 /**
  * Create a new article
  */
 export const createArticle = catchAsync(async (req: any, res: any) => {
-  // Assuming the author is the authenticated user
-  req.body.author = req.user.id;
-  const article = await articleService.createArticle(req.body);
+  const { title } = req.body;
+  const slug = await generateSlug(title);
+
+  const articleData = {
+    ...req.body,
+    slug,
+    author: req.user.id,
+  };
+
+  const article = await articleService.createArticle(articleData);
   res.status(httpStatus.CREATED).send(article);
 });
 
@@ -39,7 +47,8 @@ export const getArticleById = catchAsync(async (req: any, res: any) => {
  * Get article by slug
  */
 export const getArticleBySlug = catchAsync(async (req: any, res: any) => {
-  const article = await articleService.getArticleBySlug(req.params.slug);
+  const { slug } = req.params;
+  const article = await articleService.getArticleBySlug(slug);
   if (!article) {
     throw new ApiError(httpStatus.NOT_FOUND, "Article not found");
   }
