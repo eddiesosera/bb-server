@@ -14,13 +14,13 @@ export const authenticate = (
   passport.authenticate(
     "jwt",
     { session: false },
-    (err: any, user: any, info: any) => {
-      if (err || !user) {
+    (err: any, author: any, info: any) => {
+      if (err || !author) {
         return next(
           new ApiError(httpStatus.UNAUTHORIZED, "Please authenticate")
         );
       }
-      req.user = user;
+      req.user = author;
       next();
     }
   )(req, res, next);

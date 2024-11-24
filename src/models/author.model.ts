@@ -1,6 +1,7 @@
-import { Schema, model, Document } from "mongoose";
+import { Schema, model, Document, PaginateModel } from "mongoose";
+import mongoosePaginate from "mongoose-paginate-v2";
 
-export interface AuthorDocument extends Document {
+export interface IAuthor extends Document {
   articles: Schema.Types.ObjectId[];
   fullname: string;
   username: string;
@@ -9,11 +10,11 @@ export interface AuthorDocument extends Document {
   dateJoined: Date;
 }
 
-const AuthorSchema = new Schema<AuthorDocument>({
+const authorSchema = new Schema<IAuthor>({
   articles: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Articles",
+      ref: "Article",
     },
   ],
   fullname: { type: String, required: true },
@@ -27,4 +28,7 @@ const AuthorSchema = new Schema<AuthorDocument>({
   dateJoined: { type: Date, default: Date.now },
 });
 
-export default model<AuthorDocument>("Author", AuthorSchema);
+// Pagination plugin
+authorSchema.plugin(mongoosePaginate);
+
+export default model<IAuthor, PaginateModel<IAuthor>>("Author", authorSchema);
