@@ -4,7 +4,15 @@ dotenv.config();
 
 const env = process.env.NODE_ENV || "development";
 
-const config = {
+interface IConfig {
+  env: any;
+  port: any;
+  mongoose: any;
+  jwt: any;
+  password_salt: number;
+}
+
+const config: IConfig = {
   env,
   port: process.env.PORT || 5000,
   mongoose: {
@@ -16,6 +24,7 @@ const config = {
     accessExpirationMinutes: 30,
     refreshExpirationDays: 30,
   },
+  password_salt: Number(process.env.PASSWORD_SALT),
 };
 
 export default config;
