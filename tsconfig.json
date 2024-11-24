@@ -1,18 +1,16 @@
 {
   "compilerOptions": {
-    /* Basic Options */
-    "target": "ES2019",
-    "module": "Node16",
-    "lib": ["ES2019"],
-    "allowJs": false,
+    "target": "ES2020", // Use modern JavaScript features
+    "module": "Node16", // Use Node.js module system
+    "moduleResolution": "Node16", // Resolve modules using Node.js 16+ rules
+    "lib": ["ES2020"],
+    "esModuleInterop": true, // Enable compatibility between CommonJS and ES Modules
+    "allowSyntheticDefaultImports": true, // Allow default imports from modules without default exports
+    "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
     "rootDir": ".",
-    // "strict": true,
-    "moduleResolution": "node16",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "skipLibCheck": true
 
     /* Additional Strictness Options */
     // "noImplicitAny": true,
