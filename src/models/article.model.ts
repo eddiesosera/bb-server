@@ -29,6 +29,10 @@ const articleSchema = new Schema<IArticle>(
 // Pagination plugin
 articleSchema.plugin(mongoosePaginate);
 
+// Indexing for better query perfomance
+articleSchema.index({ category: 1 });
+articleSchema.index({ author: 1 });
+
 export default model<IArticle, PaginateModel<IArticle>>(
   "Article",
   articleSchema

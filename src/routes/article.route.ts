@@ -6,15 +6,15 @@ const router = express.Router();
 
 router
   .route("/")
-  .post(authenticate, articleController.createArticle) // Create a new article
-  .get(articleController.getArticles); // Get all articles
+  .post(authenticate, articleController.createArticleController) // Create a new article
+  .get(articleController.getArticlesController); // Get all articles (with optional filters)
 
 router
-  .route("/:articleId")
-  .get(articleController.getArticleById) // Get an article by ID
-  .put(authenticate, articleController.updateArticle) // Update an article
-  .delete(authenticate, articleController.deleteArticle); // Delete an article
+  .route("/id/:articleId")
+  .get(articleController.getArticleByIdController) // Get an article by ID
+  .put(authenticate, articleController.updateArticleController) // Update an article
+  .delete(authenticate, articleController.deleteArticleController); // Delete an article
 
-router.route("/slug/:slug").get(articleController.getArticleBySlug); // Get an article by slug
+router.route("/:slug").get(articleController.getArticleBySlugController); // Get an article by slug
 
 export default router;
