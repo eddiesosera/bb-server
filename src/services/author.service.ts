@@ -1,6 +1,8 @@
 import httpStatus from "http-status";
 import Author from "../models/author.model.js";
 import ApiError from "../utils/ApiError.js";
+import bcrypt from "bcryptjs";
+import config from "../config/config.js";
 
 /**
  * Create a new author
@@ -11,6 +13,13 @@ export const createAuthor = async (authorBody: any) => {
   if (await Author.findOne({ username: authorBody.username })) {
     throw new ApiError(httpStatus.BAD_REQUEST, "Username already taken");
   }
+
+  //   Password hashing
+  if (authorBody.password) {
+    const salt = await bcrypt.genSalt(config.password_salt);
+    authorBody.password = await bcrypt.hash(authorBody.password, salt);
+  }
+
   const author = new Author(authorBody);
   await author.save();
   return author;

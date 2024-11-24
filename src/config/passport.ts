@@ -7,19 +7,17 @@ const jwtOptions = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
 };
 
-const jwtVerify = async (payload, done) => {
-  try {
-    if (payload.type !== "ACCESS") {
-      throw new Error("Invalid token type");
-    }
-    const user = await authorModel.findById(payload.sub);
-    if (!user) {
+export const jwtStrategy = new Strategy(
+  jwtOptions,
+  async (jwtPayload, done) => {
+    try {
+      const author = await authorModel.findById(jwtPayload.sub);
+      if (author) {
+        return done(null, author);
+      }
       return done(null, false);
+    } catch (error) {
+      return done(error, false);
     }
-    done(null, user);
-  } catch (error) {
-    done(error, false);
   }
-};
-
-export const jwtStrategy = new Strategy(jwtOptions, jwtVerify);
+);
