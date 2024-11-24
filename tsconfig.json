@@ -1,15 +1,27 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "ESNext",
+    /* Basic Options */
+    "target": "ES2019",
+    "module": "Node16",
+    "lib": ["ES2019"],
+    "allowJs": false,
     "outDir": "./dist",
-    "rootDir": "./api",
+    "rootDir": ".",
     // "strict": true,
-    "moduleResolution": "node",
+    "moduleResolution": "node16",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "resolveJsonModule": true
+
+    /* Additional Strictness Options */
+    // "noImplicitAny": true,
+    // "strictNullChecks": true,
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    // "noFallthroughCasesInSwitch": true,
+    // "noImplicitReturns": true
   },
-  "include": ["api"],
+  "include": ["src/**/*.ts", "server.ts"],
   "exclude": ["node_modules", "dist"]
 }
