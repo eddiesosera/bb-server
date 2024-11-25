@@ -1,4 +1,3 @@
-// import slugify from "slugify";/
 import slugify from "@sindresorhus/slugify";
 import articleModel from "../models/article.model.js";
 
