@@ -1,25 +1,21 @@
 import httpStatus from "http-status";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
 import catchAsync from "../utils/catchAsync.js";
-import ApiError from "../utils/ApiError.js";
-import Author from "../models/author.model.js";
-import config from "../config/config.js";
+import * as authService from "../services/auth.service.js";
+import { Request, Response } from "express";
 
-export const login = catchAsync(async (req, res) => {
+/**
+ * Register a new author
+ */
+export const register = catchAsync(async (req: Request, res: Response) => {
+  const { author, token } = await authService.register(req.body);
+  res.status(httpStatus.CREATED).send({ author, token });
+});
+
+/**
+ * Login an author
+ */
+export const login = catchAsync(async (req: Request, res: Response) => {
   const { username, password } = req.body;
-
-  const author = await Author.findOne({ username });
-  if (!author || !(await bcrypt.compare(password, author.password))) {
-    throw new ApiError(
-      httpStatus.UNAUTHORIZED,
-      "Incorrect username or password"
-    );
-  }
-
-  const token = jwt.sign({ sub: author.id }, config.jwt.secret, {
-    expiresIn: config.jwt.accessExpirationMinutes * 60,
-  });
-
-  res.send({ token });
+  const { author, token } = await authService.login(username, password);
+  res.send({ author, token });
 });
