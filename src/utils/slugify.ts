@@ -1,4 +1,5 @@
-import slugify from "slugify";
+// import slugify from "slugify";/
+import slugify from "@sindresorhus/slugify";
 import articleModel from "../models/article.model.js";
 
 /**
@@ -7,7 +8,7 @@ import articleModel from "../models/article.model.js";
  * @returns {Promise<string>} - A unique slug string
  */
 export const generateSlug = async (title: string) => {
-  let slug = slugify(title, { lower: true, strict: true });
+  let slug = slugify(title, { lowercase: true });
 
   const slugExists = await articleModel.findOne({ slug });
   if (slugExists) {
