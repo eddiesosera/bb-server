@@ -18,20 +18,24 @@ const exitHandler = () => {
   if (server) {
     server.close(() => {
       logger.info("Server closed");
-      process.exit(1);
+      process.exit(1); // Exit with a failure code
     });
   } else {
-    process.exit(1);
+    process.exit(1); // Exit immediately if no server instance exists
   }
 };
 
+// Handle unexpected errors globally
 const unexpectedErrorHandler = (error: Error) => {
   logger.error(error);
-  exitHandler();
+  exitHandler(); // Close server and exit process
 };
 
+// Catch uncaught exceptions and unhandled promise rejections
 process.on("uncaughtException", unexpectedErrorHandler);
 process.on("unhandledRejection", unexpectedErrorHandler);
+
+// Gracefully handle SIGTERM (e.g., during containerized deployments)
 process.on("SIGTERM", () => {
   logger.info("SIGTERM received");
   if (server) {

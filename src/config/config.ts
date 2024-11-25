@@ -6,15 +6,16 @@ const env = process.env.NODE_ENV || "development";
 
 interface IConfig {
   env: any;
-  port: any;
+  port: number;
   mongoose: any;
   jwt: any;
   password_salt: number;
 }
 
+// Config object for external connections
 const config: IConfig = {
   env,
-  port: process.env.PORT || 5000,
+  port: Number(process.env.PORT) || 5000,
   mongoose: {
     url: process.env.MONGO_URI || "mongodb://localhost:27017/blog",
     options: {},

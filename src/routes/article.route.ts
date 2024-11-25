@@ -1,12 +1,19 @@
 import express from "express";
 import * as articleController from "../controllers/article.controller.js";
 import { authenticate } from "../middleware/auth.js";
+import { createArticleSchema } from "../validators/article.validators.js";
+import { validate } from "../middleware/validate.js";
 
 const router = express.Router();
 
 router
   .route("/")
-  .post(authenticate, articleController.createArticleController) // Create a new article
+  // Create a new article
+  .post(
+    authenticate,
+    validate(createArticleSchema),
+    articleController.createArticleController
+  )
   .get(articleController.getArticlesController); // Get all articles (with optional filters)
 
 router

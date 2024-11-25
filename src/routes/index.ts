@@ -20,6 +20,7 @@ const defaultRoutes = [
   },
 ];
 
+// Register each route dynamically
 defaultRoutes.forEach((route) => {
   router.use(route.path, route.route);
 });

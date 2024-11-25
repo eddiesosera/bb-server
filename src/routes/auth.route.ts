@@ -3,7 +3,7 @@ import { login, register } from "../controllers/auth.controller.js";
 
 const router = express.Router();
 
-router.post("/login", login);
-router.post("/register", register);
+router.post("/login", login); // Login route - no valiation
+router.post("/register", register); // Register route - no validation
 
 export default router;

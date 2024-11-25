@@ -34,7 +34,7 @@ export const register = async (authorBody: any) => {
 
   // Generate JWT token
   const token = jwt.sign({ sub: author.id }, config.jwt.secret, {
-    expiresIn: config.jwt.accessExpirationMinutes * 60,
+    expiresIn: config.jwt.accessExpirationMinutes * 120,
   });
 
   // Exclude password from the author object

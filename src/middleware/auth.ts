@@ -4,7 +4,7 @@ import httpStatus from "http-status";
 import ApiError from "../utils/ApiError.js";
 
 /**
- * Authentication middleware using Passport.js
+ * Middleware for authenticating requests using Passport's JWT strategy
  */
 export const authenticate = (
   req: Request,
@@ -13,14 +13,14 @@ export const authenticate = (
 ) => {
   passport.authenticate(
     "jwt",
-    { session: false },
+    { session: false }, // Disable session management for stateless authentication
     (err: any, author: any, info: any) => {
       if (err || !author) {
         return next(
           new ApiError(httpStatus.UNAUTHORIZED, "Please authenticate")
         );
       }
-      req.user = author;
+      req.user = author; // Attach authenticated user to the request object
       next();
     }
   )(req, res, next);

@@ -13,7 +13,7 @@ export const createAuthor = catchAsync(async (req, res) => {
 });
 
 /**
- * Get all authors
+ * Get all authors (with conditional filtering)
  */
 export const getAuthors = catchAsync(async (req, res) => {
   const filter = pick(req.query, ["fullname", "username", "accountType"]);

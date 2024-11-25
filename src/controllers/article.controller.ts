@@ -25,7 +25,7 @@ export const createArticleController = catchAsync(
 );
 
 /**
- * Get all articles
+ * Get all articles (with conditional filtering)
  */
 export const getArticlesController = catchAsync(async (req: any, res: any) => {
   const filter = pick(req.query, ["title", "category", "author"]);

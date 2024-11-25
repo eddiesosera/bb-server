@@ -5,6 +5,7 @@ import { NextFunction, Request, Response } from "express";
  */
 const catchAsync =
   (fn: Function) => (req: Request, res: Response, next: NextFunction) => {
+    // Ensures any errors in the promise chain are passed to the next middleware
     Promise.resolve(fn(req, res, next)).catch((err) => next(err));
   };
 
