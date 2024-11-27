@@ -1,4 +1,4 @@
-# Project Title
+# Beaderd Blogger server
 
 **My Express Server Project**
 
@@ -23,7 +23,7 @@ _Based on the [Node Express Boilerplate](https://github.com/hagopj13/node-expres
 
 ## Project Description
 
-This project is a Node.js and Express server designed to handle [your project's purpose, e.g., article creation, user authentication, etc.]. It is built upon the [Node Express Boilerplate](https://github.com/eddiesosera/node-express-boilerplate-master) by [eddiesosera](https://github.com/eddiesosera), adopting its file structure and naming conventions to ensure scalability and maintainability.
+This project is a Node.js and Express server designed to handle [your project's purpose, e.g., article creation, user authentication, etc.]. It is built upon the [Node Express Boilerplate](https://github.com/eddiesosera/node-express-boilerplate-master) by Hagop Jamkojian (https://github.com/@hagopj13), adopting its file structure and naming conventions to ensure scalability and maintainability.
 
 Key functionalities include:
 
