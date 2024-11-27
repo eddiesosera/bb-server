@@ -15,11 +15,13 @@ export const errorConverter = (
 ) => {
   let error = err;
   if (!(error instanceof ApiError)) {
+    console.log(req);
     const statusCode =
       (error as any).statusCode || httpStatus.INTERNAL_SERVER_ERROR; // Default to 500 if no statusCode is present
     const message = error.message || httpStatus[statusCode].toString();
     error = new ApiError(statusCode, message, false); // Wrap in ApiError for uniform error structure
   }
+
   next(error);
 };
 

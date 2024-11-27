@@ -19,8 +19,14 @@ router
 router
   .route("/id/:articleId")
   .get(articleController.getArticleByIdController) // Get an article by ID
-  .put(authenticate, articleController.updateArticleController) // Update an article
-  .delete(authenticate, articleController.deleteArticleController); // Delete an article
+  .put(
+    // authenticate,
+    articleController.updateArticleController
+  ) // Update an article
+  .delete(
+    //authenticate,
+    articleController.deleteArticleController
+  ); // Delete an article
 
 router.route("/:slug").get(articleController.getArticleBySlugController); // Get an article by slug
 

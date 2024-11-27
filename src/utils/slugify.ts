@@ -7,12 +7,19 @@ import articleModel from "../models/article.model.js";
  * @returns {Promise<string>} - A unique slug string
  */
 export const generateSlug = async (title: string) => {
-  let slug = slugify(title, { lowercase: true });
+  const baseSlug = slugify(title, { lowercase: true });
+  let uniqueSlug = baseSlug;
+  let counter = 1;
+  const maxAttempts = 100; // Prevent infinite loops
 
-  const slugExists = await articleModel.findOne({ slug });
-  if (slugExists) {
-    slug += `-${Date.now()}`; // Timestamp to ensure uniqueness if slug exists.
+  while (await articleModel.exists({ slug: uniqueSlug })) {
+    uniqueSlug = `${baseSlug}-${counter}`;
+    counter += 1;
+
+    if (counter > maxAttempts) {
+      throw new Error("Failed to generate a unique slug. Please try again.");
+    }
   }
 
-  return slug;
+  return uniqueSlug;
 };

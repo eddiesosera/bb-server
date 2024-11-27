@@ -16,8 +16,5 @@ export const createArticleSchema = Joi.object({
       "any.only":
         'Article category must be either one of the accepted types: Beardatorium, Launchpad, Notice, Team Build"',
     }),
-  imageCover: Joi.string().uri(),
-  author: Joi.string().required().messages({
-    "string.empty": "Aurthor is not specified. Specify Author.",
-  }),
+  imageCover: Joi.string().allow(""),
 });
